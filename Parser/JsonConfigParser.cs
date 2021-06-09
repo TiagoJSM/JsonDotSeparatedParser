@@ -13,11 +13,10 @@ namespace Parser
             foreach (var filePath in filePaths)
             {
                 var configFile = ReadJsonFile(filePath);
-                if (configFile == null)
+                if (configFile != null)
                 {
-                    return null;
+                    resultConfig.Merge(configFile);
                 }
-                resultConfig.Merge(configFile);
             }
             return resultConfig;
         }
@@ -29,7 +28,17 @@ namespace Parser
                 return null;
             }
             var jsonText = File.ReadAllText(filePath);
-            return JObject.Parse(jsonText);
+
+            // Newtonsoft Json doesn't private a method to check if a parse is possible, so for now we have to use a try-catch to avoid exceptions bubbling up
+            // ToDo: Replace try-catch if Newtonsoft Json provides a "validation" method
+            try
+            {
+                return JObject.Parse(jsonText);
+            }
+            catch(Exception)
+            {
+                return null;
+            }
         }
     }
 }
