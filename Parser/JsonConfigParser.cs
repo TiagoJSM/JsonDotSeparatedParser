@@ -7,7 +7,7 @@ namespace Parser
 {
     public class JsonConfigParser
     {
-        public JObject ParseConfigFiles(params string[] filePaths)
+        public dynamic ParseConfigFiles(params string[] filePaths)
         {
             var resultConfig = new JObject();
             foreach (var filePath in filePaths)
