@@ -19,7 +19,7 @@ namespace Parser
                 var configFile = ReadJsonFile(filePath);
                 if (configFile != null)
                 {
-                    resultConfig.Merge(configFile);
+                    resultConfig.Merge(configFile, new JsonMergeSettings { MergeArrayHandling = MergeArrayHandling.Replace });
                 }
             }
             return resultConfig;

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Parser
 {
@@ -27,7 +28,7 @@ namespace Parser
                 {
                     var match = PathRegex.ArrayElement.Match(segment);
                     yield return (d) => PropertySegment(d, match.Groups[1].Value);
-                    yield return (d) => PropertySegment(d, int.Parse(match.Groups[2].Value));
+                    yield return (d) => ArraySegment(d, int.Parse(match.Groups[2].Value));
                 }
                 else if (PathRegex.Property.IsMatch(segment))
                 {
@@ -45,6 +46,21 @@ namespace Parser
         private static JToken PropertySegment(JToken data, object property)
         {
             return data[property];
+        }
+
+        /// <summary>
+        /// Gets JToken from data based on an index
+        /// </summary>
+        /// <param name="data">The token to obtain the property from</param>
+        /// <param name="index">The index of the array</param>
+        /// <returns></returns>
+        private static JToken ArraySegment(JToken data, int index)
+        {
+            // check if index is valid
+            return
+                data.Children().Count() > index && index >= 0
+                ? data[index]
+                : null;
         }
     }
 }
