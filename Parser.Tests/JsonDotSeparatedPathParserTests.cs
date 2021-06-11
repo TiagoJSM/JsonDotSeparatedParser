@@ -11,10 +11,10 @@ namespace Parser.Tests
         [TestCase("environment", 1)]
         [TestCase("cache.redis.host", 3)]
         [TestCase("userRoles[1]", 2)]
-        public void CanParseHostFromSingleConfigFile(string path, int numberOfSegments)
+        public void PathParserReturnsExpectedPathCount(string path, int numberOfSegments)
         {
             var segments = JsonDotSeparatedPathParser.GetPathSegments(path);
-            Assert.AreEqual(segments.Count(), numberOfSegments);
+            Assert.AreEqual(numberOfSegments, segments.Count());
         }
     }
 }

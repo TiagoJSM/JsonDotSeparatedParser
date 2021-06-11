@@ -7,7 +7,7 @@ namespace Parser
 {
     public class JsonDotSeparatedPath
     {
-        public static TData Fetch<TData>(JObject data, string path)
+        public static TData Select<TData>(JObject data, string path)
         {
             var parts = JsonDotSeparatedPathParser.GetPathSegments(path);
 

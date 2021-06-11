@@ -21,7 +21,7 @@ namespace Parser.Tests
         {
             dynamic config = _parser.ParseConfigFiles(filePath);
             string host = config.database.host;
-            Assert.AreEqual(host, data);
+            Assert.AreEqual(data, host);
         }
 
         [TestCase("fixtures/config.invalid.json")]
@@ -40,7 +40,7 @@ namespace Parser.Tests
         {
             dynamic config = _parser.ParseConfigFiles(configFilePath1, configFilePath2);
             string host = config.database.host;
-            Assert.AreEqual(host, data);
+            Assert.AreEqual(data, host);
         }
 
         [TestCase("fixtures/config.invalid.json", "fixtures/non-existing-file.json")]
