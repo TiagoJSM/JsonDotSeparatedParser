@@ -7,10 +7,9 @@ namespace Parser
         static void Main(string[] args)
         {
             var parser = new JsonConfigParser();
-            var pathParser = new SeparatedPathParser('.');
 
-            var config = parser.ParseConfigFiles("fixtures/config.json", "fixtures/config.local.json");
-            var data = DataFetcher.Fetch<string>(config, pathParser.GetPathParts("database.host"));
+            var config = parser.ParseConfigFiles("fixtures/userroles.json", "fixtures/userroles.local.json");
+            var data = JsonDotSeparatedPath.Fetch<string>(config, "userRoles[1]");
 
             Console.WriteLine("Hello World!");
         }

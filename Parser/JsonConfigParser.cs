@@ -11,7 +11,7 @@ namespace Parser
         /// </summary>
         /// <param name="filePaths">The path for the json files.</param>
         /// <returns></returns>
-        public dynamic ParseConfigFiles(params string[] filePaths)
+        public JObject ParseConfigFiles(params string[] filePaths)
         {
             var resultConfig = new JObject();
             foreach (var filePath in filePaths)
