@@ -8,8 +8,8 @@ namespace Parser
         {
             var parser = new JsonConfigParser();
 
-            var config = parser.ParseConfigFiles("fixtures/userroles.json", "fixtures/userroles.local.json");
-            var data = JsonDotSeparatedPath.Select<string>(config, "userRoles[1]");
+            var config = parser.ParseConfigFiles("fixtures/config.json", "fixtures/config.local.json");
+            var data = JsonDotSeparatedPath.Select<string>(config, "database.host");
 
             Console.WriteLine("Hello World!");
         }

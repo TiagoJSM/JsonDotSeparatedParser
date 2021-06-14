@@ -20,11 +20,8 @@ namespace Parser.Tests
         [TestCase(new string[] { "fixtures/config.json" }, "cache.redis.host", "redis")]
         [TestCase(new string[] { "fixtures/config.json" }, "cache.redis.none", null)]
         [TestCase(new string[] { "fixtures/config.json" }, "not.a.path", null)]
-        [TestCase(new string[] { "fixtures/userroles.json" }, "userRoles[0]", "user")]
-        [TestCase(new string[] { "fixtures/userroles.json", "fixtures/userroles.local.json" }, "userRoles[0]", "user")]
-        [TestCase(new string[] { "fixtures/userroles.json", "fixtures/userroles.local.json" }, "userRoles[1]", "admin")]
-        [TestCase(new string[] { "fixtures/userroles.local.json", "fixtures/userroles.json" }, "userRoles[1]", null)]
-        [TestCase(new string[] { "fixtures/userroles.local.json", "fixtures/userroles.json" }, "userRoles[1].notAValidPath[0]", null)]
+        [TestCase(new string[] { "fixtures/config.json" }, "environment.not.a.path", null)]
+        [TestCase(new string[] { "fixtures/config.json", "config.local.json" }, "environment.not.a.path", null)]
         public void CanSelectDataFromPath(string[] filePaths, string jsonPath, string expectedData)
         {
             dynamic config = _parser.ParseConfigFiles(filePaths);

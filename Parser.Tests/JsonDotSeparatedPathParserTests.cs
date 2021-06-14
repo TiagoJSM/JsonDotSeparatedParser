@@ -10,7 +10,6 @@ namespace Parser.Tests
     {
         [TestCase("environment", 1)]
         [TestCase("cache.redis.host", 3)]
-        [TestCase("userRoles[1]", 2)]
         public void PathParserReturnsExpectedPathCount(string path, int numberOfSegments)
         {
             var segments = JsonDotSeparatedPathParser.GetPathSegments(path);
