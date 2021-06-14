@@ -10,8 +10,6 @@ namespace Parser
 
             var config = parser.ParseConfigFiles("fixtures/config.json", "fixtures/config.local.json");
             var data = JsonDotSeparatedPath.Select<string>(config, "database.host");
-
-            Console.WriteLine("Hello World!");
         }
     }
 }
