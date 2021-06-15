@@ -30,3 +30,9 @@ dotnet test
 cd Parser
 dotnet run
 ```
+## Project Structure
+
+The project is separated in two parts, Parser and Parser.Tests
+
+Parser contains config files, the code to load and process the json config files.
+Parser.Tests contains a series of tests for the different parts of the application.
