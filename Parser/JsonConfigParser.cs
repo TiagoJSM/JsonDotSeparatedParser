@@ -11,7 +11,7 @@ namespace Parser
         /// </summary>
         /// <param name="filePaths">The path for the json files.</param>
         /// <returns></returns>
-        public dynamic ParseConfigFiles(params string[] filePaths)
+        public JObject ParseConfigFiles(params string[] filePaths)
         {
             var resultConfig = new JObject();
             foreach (var filePath in filePaths)
@@ -19,7 +19,7 @@ namespace Parser
                 var configFile = ReadJsonFile(filePath);
                 if (configFile != null)
                 {
-                    resultConfig.Merge(configFile);
+                    resultConfig.Merge(configFile, new JsonMergeSettings { MergeArrayHandling = MergeArrayHandling.Replace });
                 }
             }
             return resultConfig;

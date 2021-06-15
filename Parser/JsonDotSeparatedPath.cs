@@ -5,14 +5,16 @@ using System.Text;
 
 namespace Parser
 {
-    public class DataFetcher
+    public class JsonDotSeparatedPath
     {
-        public static TData Fetch<TData>(JObject data, IEnumerable<string> pathParts)
+        public static TData Select<TData>(JObject data, string path)
         {
+            var parts = JsonDotSeparatedPathParser.GetPathSegments(path);
+
             JToken result = data;
-            foreach(var pathPart in pathParts)
+            foreach(var part in parts)
             {
-                result = result[pathPart];
+                result = part(result);
                 if(result == null)
                 {
                     return default(TData);

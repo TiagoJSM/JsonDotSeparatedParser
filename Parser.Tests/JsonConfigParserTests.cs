@@ -19,16 +19,16 @@ namespace Parser.Tests
         [TestCase("fixtures/config.local.json", "127.0.0.1")]
         public void CanParseHostFromSingleConfigFile(string filePath, string data)
         {
-            var config = _parser.ParseConfigFiles(filePath);
+            dynamic config = _parser.ParseConfigFiles(filePath);
             string host = config.database.host;
-            Assert.AreEqual(host, data);
+            Assert.AreEqual(data, host);
         }
 
         [TestCase("fixtures/config.invalid.json")]
         [TestCase("fixtures/non-existing-file.json")]
         public void ConfigDataIsEmptyWhenParsingFails(string filePath)
         {
-            var config = _parser.ParseConfigFiles(filePath);
+            dynamic config = _parser.ParseConfigFiles(filePath);
             Assert.IsNull(config.database);
         }
 
@@ -38,15 +38,15 @@ namespace Parser.Tests
         [TestCase("fixtures/config.invalid.json", "fixtures/config.json", "mysql")]
         public void ConfigFilesAreMergedInOrder(string configFilePath1, string configFilePath2, string data)
         {
-            var config = _parser.ParseConfigFiles(configFilePath1, configFilePath2);
+            dynamic config = _parser.ParseConfigFiles(configFilePath1, configFilePath2);
             string host = config.database.host;
-            Assert.AreEqual(host, data);
+            Assert.AreEqual(data, host);
         }
 
         [TestCase("fixtures/config.invalid.json", "fixtures/non-existing-file.json")]
         public void ConfigDataIsEmptyWhenMergingInvalidConfigs(string configFilePath1, string configFilePath2)
         {
-            var config = _parser.ParseConfigFiles(configFilePath1, configFilePath2);
+            dynamic config = _parser.ParseConfigFiles(configFilePath1, configFilePath2);
             Assert.IsNull(config.database);
         }
     }
